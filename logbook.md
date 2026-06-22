@@ -1,18 +1,18 @@
-# Diario de Ingeniería - X525 Quadcopter
+# Engineering Logbook - X525 Quadcopter
 
-## Fecha: 22/06/2026
-**Fase:** Pruebas de Aviónica en Banco
+## Date: 2026-06-22
+**Phase:** Bench Avionics Testing
 
-### 🔧 Trabajos realizados hoy:
-1. **Resolución de Protocolo Legacy (MAVLink):** * Se experimentó un fallo `Calibration FAILED` al intentar nivelar el acelerómetro de la APM 2.8 usando la versión moderna de Mission Planner.
-   * *Solución:* [Escribe aquí brevemente cómo usamos la v1.3.56 para forzar la escritura de la EEPROM].
-2. **Sincronización de Variadores (ESCs):**
-   * [Explica brevemente cómo hiciste el reinicio con el gas al 100% para igualar el límite inferior de los motores].
-3. **Mapeo de Radio FlySky:**
-   * Se identificó un error de lectura en el canal de guiñada (Yaw).
-   * *Solución:* [Escribe cómo cambiaste el cable del Canal 4 al pin correcto].
+### 🔧 Work completed today:
+1. **Legacy Protocol Resolution (MAVLink):** * Experienced a `Calibration FAILED` error when attempting to level the APM 2.8 accelerometer using the modern Mission Planner release.
+   * *Solution:* [Escribe aquí cómo usaste la versión 1.3.56].
+2. **ESC Synchronization:**
+   * [Explica aquí el reinicio al 100% de gas].
+3. **FlySky Radio Mapping:**
+   * Identified a dead channel reading for the Yaw input.
+   * *Solution:* [Explica lo del cable del CH4].
 
-### 📊 Estado actual del sistema:
-* Placa configurada y orientada correctamente.
-* Los modos de vuelo han sido fijados por seguridad en `Stabilize`.
-* **Prueba dinámica completada:** El bucle PID responde perfectamente a las inercias sin estar conectado al PC.
+### 📊 Current System Status:
+* Flight controller properly oriented and leveled.
+* Flight modes locked to `Stabilize` for testing safety.
+* **Dynamic test completed:** PID loop responds accurately to physical inertia off-tether.
