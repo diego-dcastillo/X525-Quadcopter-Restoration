@@ -4,35 +4,25 @@
 This project documents the physical restoration and software configuration of a legacy X525 Quad-X drone. The primary objective was to troubleshoot a complete avionics failure after a decade of inactivity, successfully bridging older hardware (APM 2.8) with modern diagnostic practices.
 
 ## ⚙️ Hardware Architecture
-* **Frame:** X525 Glass Fiber Quad-X
-* **Flight Controller:** ArduPilot Mega (APM) 2.8
-* **Motors:** Brushless A2212 1000KV
-* **ESCs:** 30A SimonK Firmware
-* **Radio System:** FlySky (PWM configuration)
 
-## 🛠️ Engineering Milestones & Troubleshooting
+### Airframe & Propulsion
+* **Chassis:** X525 Glass Fiber Quad-X configuration (folding frame design).
+* **Motors:** 4x Brushless Outrunner A2212/13T 1000KV.
+* **Propellers:** 10x4.5 standard composite plastic propellers.
+* **ESCs:** 4x HobbySky 30A with SimonK firmware (Supported input: 5-12S NiMH / 2-4S LiPo).
+* **Power Distribution:** Integrated Quadcopter ESC Connection Board (PDB) featuring XT60 input for high-current distribution.
 
-Throughout the restoration process, several critical hardware and software conflicts were isolated and resolved:
+### Avionics & Flight Control
+* **Flight Controller (FC):** APM 2.8 (ArduPilot Mega) running legacy ArduCopter firmware.
+* **Power Management:** APM Power Module v1.0 (5.3V output for telemetry and FC power).
+* **Receiver (RX):** FlySky FS-R9B 8-Channel 2.4GHz Digital Receiver System.
 
-### 1. Power Bus & Telemetry Isolation
-* **Issue:** The flight controller would not boot when running exclusively on LiPo power, causing the ESCs to enter a silent failsafe mode.
-* **Solution:** Diagnosed a 5V power routing failure. Integrated a dedicated Power Module to bypass the USB power line, successfully establishing a clean 5V supply and telemetry data link to the APM.
+### Navigation
+* **GPS Module:** External Ublox-style GPS module with integrated magnetometer (compass).
+* **Design:** High-gain ceramic patch antenna mounted on a foldable mast for improved signal acquisition and electromagnetic interference (EMI) isolation.
+* **Cabling:** Shielded Zhengwei E326510 28 AWG cabling for reliable MAVLink/I2C communication.
 
-### 2. Signal Synchronization & PWM Calibration
-* **Issue:** ESCs failed to register the throttle signal from the flight controller due to boot-time delays in the APM processor.
-* **Solution:** Executed a direct hardware isolation test. Bypassed the flight controller to calibrate the ESCs directly through the receiver's CH3 (Throttle), mapping the absolute analog limits of the FlySky transmitter.
-
-### 3. Phase Loss Diagnosis (Motor Cogging)
-* **Issue:** Motor 2 exhibited severe stuttering ("cogging") and failed to complete a full rotation.
-* **Solution:** Applied mechanical isolation. Swapped a known working motor into the suspected ESC channel, confirming a dead phase (burnt MOSFET) within the ESC itself rather than a stator winding failure. 
-
-### 4. AHRS Matrix Realignment (Software Over Mechanical)
-* **Issue:** The physical anti-vibration mount constrained the flight controller's orientation, pointing the internal gyroscopes away from the drone's true forward vector.
-* **Solution:** Rather than compromising the mechanical dampening, the correction was handled in software. Modified the `AHRS_ORIENTATION` parameter in Mission Planner to offset the Yaw mathematically, perfectly realigning the IMU with the physical chassis.
-
-### 5. Ground PID Saturation & Integral Windup
-* **Issue:** Asymmetrical motor spool-up upon arming on the test bench, caused by the PID controller's Integral (I) term attempting to correct micro-inclinations on the ground.
-* **Solution:** Mitigated by zeroing the `MOT_SPIN_ARMED` parameter to disable the safety idle, and executing a rigid 6-axis accelerometer calibration to establish a perfect absolute zero for the artificial horizon.
-
-## 🚀 Current Status
-The avionics system is currently fully operational, with perfect symmetry in motor response and active IMU stabilization. The next phase involves flight testing and dynamic PID tuning.
+### Power Supply & Ground Support
+* **Flight Battery:** HRB 3S (11.1V) 5000mAh 50C LiPo with XT60 connector.
+* **Battery Maintenance:** iMAX B6 Digital Balance Charger & Discharger.
+* **Telemetry & Configuration:** Mission Planner (utilizing both modern releases for diagnostics and legacy v1.3.56 for EEPROM writing overrides).
