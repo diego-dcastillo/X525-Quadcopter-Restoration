@@ -1,38 +1,24 @@
-# X525-Quadcopter-Restoration
+# X525 Legacy Quadcopter: Avionics Restoration & UAS Flight Operations
 
-## 📌 Project Overview
-This project documents the physical restoration and software configuration of a legacy X525 Quad-X drone. The primary objective was to troubleshoot a complete avionics failure after a decade of inactivity, successfully bridging older hardware (APM 2.8) with modern diagnostic practices.
+## 🚀 Project Overview
+This repository documents the complete engineering restoration, avionics configuration, and flight testing of a legacy X525 Quad-X Unmanned Aerial System (UAS). Originally decommissioned and stored for over a decade, this airframe was systematically overhauled to serve as a practical testbed for studying low-level flight controller architectures, PID loop tuning, and autonomous navigation protocols. 
+
+The primary objective of this project is to bridge older legacy hardware with modern diagnostic practices, demonstrating a hands-on understanding of rotorcraft aerodynamics, power distribution, and electronic troubleshooting from the ground up.
 
 ## ⚙️ Hardware Architecture
-* **Frame:** X525 Glass Fiber Quad-X
-* **Flight Controller:** ArduPilot Mega (APM) 2.8
-* **Motors:** Brushless A2212 1000KV
-* **ESCs:** 30A SimonK Firmware
-* **Radio System:** FlySky (PWM configuration)
 
-## 🛠️ Engineering Milestones & Troubleshooting
+### Airframe & Propulsion
+* **Chassis:** X525 Glass Fiber Quad-X configuration (folding frame design).
+* **Motors:** 4x Brushless Outrunner A2212/13T 1000KV.
+* **ESCs:** 4x HobbySky 30A with SimonK firmware (Supported input: 5-12S NiMH / 2-4S LiPo).
+* **Power Distribution:** Centralized standard Power Distribution Board (PDB) directly soldered to ESC power leads.
 
-Throughout the restoration process, several critical hardware and software conflicts were isolated and resolved:
+### Avionics & Flight Control
+* **Flight Controller (FC):** APM 2.8 (ArduPilot Mega) running legacy ArduCopter firmware.
+* **Power Management:** APM Power Module v1.0 (Providing steady 5.3V and voltage/current telemetry to the FC).
+* **Receiver (RX):** FlySky FS-R9B 8-Channel 2.4GHz Digital Receiver System.
+* **Navigation:** GPS Module [MODEL_PENDING] with integrated external compass.
 
-### 1. Power Bus & Telemetry Isolation
-* **Issue:** The flight controller would not boot when running exclusively on LiPo power, causing the ESCs to enter a silent failsafe mode.
-* **Solution:** Diagnosed a 5V power routing failure. Integrated a dedicated Power Module to bypass the USB power line, successfully establishing a clean 5V supply and telemetry data link to the APM.
-
-### 2. Signal Synchronization & PWM Calibration
-* **Issue:** ESCs failed to register the throttle signal from the flight controller due to boot-time delays in the APM processor.
-* **Solution:** Executed a direct hardware isolation test. Bypassed the flight controller to calibrate the ESCs directly through the receiver's CH3 (Throttle), mapping the absolute analog limits of the FlySky transmitter.
-
-### 3. Phase Loss Diagnosis (Motor Cogging)
-* **Issue:** Motor 2 exhibited severe stuttering ("cogging") and failed to complete a full rotation.
-* **Solution:** Applied mechanical isolation. Swapped a known working motor into the suspected ESC channel, confirming a dead phase (burnt MOSFET) within the ESC itself rather than a stator winding failure. 
-
-### 4. AHRS Matrix Realignment (Software Over Mechanical)
-* **Issue:** The physical anti-vibration mount constrained the flight controller's orientation, pointing the internal gyroscopes away from the drone's true forward vector.
-* **Solution:** Rather than compromising the mechanical dampening, the correction was handled in software. Modified the `AHRS_ORIENTATION` parameter in Mission Planner to offset the Yaw mathematically, perfectly realigning the IMU with the physical chassis.
-
-### 5. Ground PID Saturation & Integral Windup
-* **Issue:** Asymmetrical motor spool-up upon arming on the test bench, caused by the PID controller's Integral (I) term attempting to correct micro-inclinations on the ground.
-* **Solution:** Mitigated by zeroing the `MOT_SPIN_ARMED` parameter to disable the safety idle, and executing a rigid 6-axis accelerometer calibration to establish a perfect absolute zero for the artificial horizon.
-
-## 🚀 Current Status
-The avionics system is currently fully operational, with perfect symmetry in motor response and active IMU stabilization. The next phase involves flight testing and dynamic PID tuning.
+### Ground Support Equipment (GSE)
+* **Battery Maintenance:** iMAX B6 Digital Balance Charger & Discharger with dedicated DC Power Supply.
+* **Telemetry & Configuration:** Mission Planner (utilizing both modern releases for diagnostics and legacy v1.3.56 for EEPROM writing overrides).
