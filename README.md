@@ -5,11 +5,6 @@ This repository documents the complete engineering restoration, avionics configu
 
 The primary objective of this project is to bridge older legacy hardware with modern diagnostic practices, demonstrating a hands-on understanding of rotorcraft aerodynamics, power distribution, and electronic troubleshooting from the ground up.
 
-# X525-Quadcopter-Restoration
-
-## 📌 Project Overview
-This project documents the physical restoration and software configuration of a legacy X525 Quad-X drone. The primary objective was to troubleshoot a complete avionics failure after a decade of inactivity, successfully bridging older hardware (APM 2.8) with modern diagnostic practices.
-
 ## ⚙️ Hardware Architecture
 
 ### Airframe & Propulsion
