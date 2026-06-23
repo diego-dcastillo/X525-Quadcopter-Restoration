@@ -5,10 +5,11 @@ The first objective was establishing communication between the legacy APM 2.8 fl
 * **Physical Connection:** Connected the APM 2.8 via the lateral USB port. Onboard LEDs initialized, indicating board boot-up.
 * **GCS Configuration:** Selected the active `COM` port (e.g., COM3 / Arduino Mega 2560) and set the baud rate strictly to `115200`. Clicked "CONNECT" to download the board's parameters.
 
-> **🛠️ Troubleshooting: USB Cable Power vs. Data**
-> * **Issue:** No connection or USB recognition chime from the computer.
-> * **Root Cause:** Standard consumer micro-USB cables are often "charge-only" to save costs (containing only the 5V Positive and Negative wires).
-> * **Fix:** Ensured the use of a fully pinned data cable containing the internal D+ and D- data transmission lines.
+> **🛠️ Troubleshooting: USB Cable Data Integrity & COM Port Verification**
+> * **Issue:** No connection, no USB recognition chime from the computer, or Mission Planner fails to connect.
+> * **Root Cause:** Standard consumer micro-USB cables are often "charge-only" to save costs (containing only the 5V Positive and Negative wires, lacking D+/D- lines).
+> * **Diagnostic Step (Windows Device Manager):** Before launching the GCS, open Windows Device Manager and expand the `Ports (COM & LPT)` section. A valid data cable and a healthy FC bootloader will immediately register as `Arduino Mega 2560 (COMx)`. If plugging/unplugging the board does not refresh this list, the cable is strictly for power or the USB bridge driver is missing.
+> * **Fix:** Swapped to a verified, fully-pinned data cable and confirmed hardware recognition at the OS level via Device Manager prior to opening Mission Planner.
 
 ### 2. GCS Dashboard Fundamentals
 Understanding the raw data feeds on the Mission Planner dashboard is critical before physical operation.
