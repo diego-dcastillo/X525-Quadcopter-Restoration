@@ -12,14 +12,14 @@ The first objective was establishing communication between the legacy APM 2.8 fl
 
 ### 2. GCS Dashboard Fundamentals
 Understanding the raw data feeds on the Mission Planner dashboard is critical before physical operation.
-* **HUD (Head-Up Display):** Displays the Artificial Horizon.
+* **HUD (Head-Up Display):** Displays the Artificial Horizon in "Flight Data".
     * *DISARMED:* Hardware safety lock is active. Motors will not spin.
     * *Bad Compass Health:* Magnetometer requires calibration (expected after 10 years of inactivity).
     * *No GPS:* Expected behavior indoors due to lack of satellite visibility through the roof.
 * **Telemetry Panel:** Raw sensor data.
     * *Altitude:* Derived from the onboard barometer. Minor drifting indoors is normal due to ambient atmospheric pressure changes.
     * *Yaw:* Heading relative to magnetic north.
-* **Dynamic IMU Test:** Manually pitched and rolled the airframe on the bench. The HUD horizon responded fluidly, confirming the Inertial Measurement Unit (IMU) gyroscopes and accelerometers survived storage intact.
+* **Dynamic IMU Test:** Manually pitched and rolled the airframe on the bench. **As the HUD horizon responded fluidly, confirming the Inertial Measurement Unit (IMU) gyroscopes and accelerometers survived storage intact.**
 
 ### 3. Power Management: LiPo Revitalization & iMAX B6 Protocol
 Proper battery management is paramount for safety and avionics stability. 
