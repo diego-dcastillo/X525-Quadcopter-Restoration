@@ -1,7 +1,9 @@
-# X525-Quadcopter-Restoration
+# X525 Legacy Quadcopter: Avionics Restoration & UAS Flight Operations
 
-## 📌 Project Overview
-This project documents the physical restoration and software configuration of a legacy X525 Quad-X drone. The primary objective was to troubleshoot a complete avionics failure after a decade of inactivity, successfully bridging older hardware (APM 2.8) with modern diagnostic practices.
+## 🚀 Project Overview
+This repository documents the complete engineering restoration, avionics configuration, and flight testing of a legacy X525 Quad-X Unmanned Aerial System (UAS). Originally decommissioned and stored for over a decade, this airframe was systematically overhauled to serve as a practical testbed for studying low-level flight controller architectures, PID loop tuning, and autonomous navigation protocols. 
+
+The primary objective of this project is to bridge older legacy hardware with modern diagnostic practices, demonstrating a hands-on understanding of rotorcraft aerodynamics, power distribution, and electronic troubleshooting from the ground up.
 
 ## ⚙️ Hardware Architecture
 
